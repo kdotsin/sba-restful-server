@@ -24,3 +24,25 @@ export async function searchMovie(req, res) {
     res.status(500).json({ error: 'failed to find movie' });
   }
 }
+
+export async function getMovieDetails(req, res) {
+  const id = req.params.id;
+
+  if (!id) {
+    return res.status(400).json({ error: 'failed to retrieve id' });
+  }
+
+  try {
+    const response = await axios.get(baseUrl, {
+      params: {
+        i: id,
+        apikey: apiKey,
+      }
+    });
+
+    res.status(200).json(response.data);
+  } catch (e) {
+    console.error('did not work', e.message);
+    res.status(500).json({ message: 'failed to get details' });
+  }
+}

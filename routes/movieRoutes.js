@@ -3,7 +3,7 @@ import * as movieController from '../controllers/movieController.js'
 
 const route = e.Router();
 
-route.get('/', movieController.searchMovie);
-route.get('/', movieController.getMovieDetails);
+route.get('/search', movieController.searchMovie);
+route.get('/movies/:id', movieController.getMovieDetails);
 
 export default route;
